@@ -3,10 +3,9 @@
 import React from 'react';
 import Routes from './Routes';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>Hello from app.js</h1>
       <Routes />
     </div>
   );

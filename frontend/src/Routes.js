@@ -1,9 +1,10 @@
 // frontend/src/Routes.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes
 
-import VisitorView from './components/VisitorView/VisitorView';
-import EditorView from './components/EditorView/EditorView';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import VisitorView from './components/VisitorView';
+import EditorView from './components/EditorView';
 
 const RoutesComponent = () => {
   return (

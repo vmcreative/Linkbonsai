@@ -1,5 +1,22 @@
 /* src/tailwind.css */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme__dark {
+  --text: #ffffff;
+  --light: #bababa;
+  --medium: #737373;
+  --dark: #404040;
+  --darker: #171717;
+  --invert: 1;
+}
+.theme__light {
+    --text: #000000;
+    --light: #f4f3f3;
+    --medium: #dfdfdf;
+    --dark: #bfd8d5;
+    --darker: #b1bed5;
+    --invert: 0;
+}
