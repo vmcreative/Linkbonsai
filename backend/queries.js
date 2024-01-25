@@ -1,7 +1,8 @@
 // backend/queries.js
 
 const getUsers = 'SELECT * FROM users';
-const getUser = (selector) => `SELECT * FROM users WHERE ${selector} = $1`; // selector can be 'user_id' or 'user_value'
+const getUserById = 'SELECT * FROM users WHERE user_id = $1';
+const getUserByHandle = 'SELECT * FROM users WHERE user_handle = $1';
 
 const getItems = 'SELECT * FROM items';
 const getItemById = 'SELECT * FROM items WHERE item_id = $1';
@@ -49,7 +50,7 @@ const removeItemByUser = 'DELETE FROM items WHERE user_id = $1';
 
 module.exports = {
   getUsers,
-  getUser,
+  getUserById,
   getUserByHandle,
   getItems,
   getItemById,

@@ -1,4 +1,5 @@
 // backend/schemas.js
+
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
@@ -22,6 +23,7 @@ const typeDefs = gql`
     user_subheader: String
     user_image: String
     user_theme: ThemeType
+    items: [Item]
     # Add more fields as needed
   }
 
@@ -38,7 +40,8 @@ const typeDefs = gql`
   # Define Query types for fetching data
   type Query {
     users: [User]
-    user(user_id: Int!): User
+    userById(user_id: Int!): User
+    userByHandle(user_handle: String!): User
     items: [Item]
     item(item_id: Int!): Item
   }

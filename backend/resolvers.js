@@ -12,9 +12,17 @@ const resolvers = {
         throw error;
       }
     },
-    user: async (_, { selector, value }) => { // selector can be 'user_id' or 'user_value'
+    userById: async (_, { user_id }) => {
       try {
-        const { rows } = await pool.query(queries.getUserById(selector), [value]);
+        const { rows } = await pool.query(queries.getUserById, [user_id]);
+        return rows[0];
+      } catch (error) {
+        throw error;
+      }
+    },
+    userByHandle: async (_, { user_handle }) => {
+      try {
+        const { rows } = await pool.query(queries.getUserByHandle, [user_handle]);
         return rows[0];
       } catch (error) {
         throw error;
@@ -113,6 +121,16 @@ const resolvers = {
         throw error;
       }
     },
+  },
+  User: {
+    items: async (user) => {
+      try {
+        const { rows } = await pool.query(queries.getItemsByUser, [user.user_id]);
+        return rows;
+      } catch (error) {
+        throw error;
+      }
+    }
   },
 };
 
