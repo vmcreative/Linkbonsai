@@ -10,7 +10,7 @@ const RoutesComponent = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/admin" element={<EditorView />} />
+        <Route path="/" element={<EditorView />} />
         <Route path="/:userHandle" element={<VisitorView />} />
       </Routes>
     </Router>

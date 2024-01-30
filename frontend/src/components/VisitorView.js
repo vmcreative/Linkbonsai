@@ -8,11 +8,9 @@ const VisitorView = ({ data }) => {
   const { userHandle } = useParams();
   const [userData, setUserData] = useState(data ?? null);
 
-  const api = process.env.REACT_APP_API;
-
   useEffect(() => {
     if (!userData) {
-    const apiUrl = `${api}/users/handle/${userHandle}`;
+    const apiUrl = `/api/users/handle/${userHandle}`;
 
     fetch(apiUrl)
       .then((response) => response.json())
@@ -24,7 +22,7 @@ const VisitorView = ({ data }) => {
       });
     }
 
-  }, [api, userData, userHandle]);
+  }, [userData, userHandle]);
 
   return (
     

@@ -1,9 +1,7 @@
 // frontend/src/utils/api.js
 
-const api = process.env.REACT_APP_API;
-
 export const loginUser = async (formData) => {
-  const response = await fetch(`${api}/users/login`, {
+  const response = await fetch(`/api/users/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData),
@@ -12,7 +10,7 @@ export const loginUser = async (formData) => {
 };
 
 export const fetchUserData = async (token) => {
-  const response = await fetch(`${api}/users/id`, {
+  const response = await fetch(`/api/users/id`, {
     headers: { Authorization: token }
   });
   return response;
@@ -24,7 +22,7 @@ export const editUser = async (formData, session) => {
     if (formatted[key] === '') formatted[key] = null;
   }
 
-  const response = await fetch(`${api}/users`, {
+  const response = await fetch(`/api/users`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -36,7 +34,7 @@ export const editUser = async (formData, session) => {
 };
 
 export const addItem = async (formData, session) => {
-  const response = await fetch(`${api}/items`, {
+  const response = await fetch(`/api/items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -48,7 +46,7 @@ export const addItem = async (formData, session) => {
 };
 
 export const editItem = async (formData, session) => {
-  const response = await fetch(`${api}/items`, {
+  const response = await fetch(`/api/items`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +58,7 @@ export const editItem = async (formData, session) => {
 };
 
 export const deleteItem = async (formData, session) => {
-  const response = await fetch(`${api}/items`, {
+  const response = await fetch(`/api/items`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

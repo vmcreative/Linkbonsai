@@ -5,12 +5,10 @@
     "start:backend": "cd backend && npm start",
     "start:both": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "dev": "npm run start:both",
-    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
+    "start": "node server",
+    "build": "cd frontend/ && npm install && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
-  },
-  "dependencies": {
-    "react-scripts": "5.0.1"
   }
 }
