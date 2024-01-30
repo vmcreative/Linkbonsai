@@ -12,6 +12,7 @@ const resolvers = {
         throw error;
       }
     },
+
     userById: async (_, { user_id }) => {
       try {
         const { rows } = await pool.query(queries.getUserById, [user_id]);
@@ -20,6 +21,7 @@ const resolvers = {
         throw error;
       }
     },
+
     userByHandle: async (_, { user_handle }) => {
       try {
         const { rows } = await pool.query(queries.getUserByHandle, [user_handle]);
@@ -28,6 +30,16 @@ const resolvers = {
         throw error;
       }
     },
+
+    userByEmail: async (_, { user_email }) => {
+      try {
+        const { rows } = await pool.query(queries.getUserByEmail, [user_email]);
+        return rows[0];
+      } catch (error) {
+        throw error;
+      }
+    },
+
     items: async () => {
       try {
         const { rows } = await pool.query(queries.getItems);
@@ -36,6 +48,7 @@ const resolvers = {
         throw error;
       }
     },
+
     item: async (_, { item_id }) => {
       try {
         const { rows } = await pool.query(queries.getItemById, [item_id]);
@@ -59,24 +72,23 @@ const resolvers = {
         throw error;
       }
     },
-    updateUser: async (_, { user_id, changes }) => {
+
+    updateUser: async (_, { params }) => {
       try {
         const { rows } = await pool.query(queries.updateUser, [
-          changes.user_email,
-          changes.user_handle,
-          changes.user_first_name,
-          changes.user_last_name,
-          changes.user_header,
-          changes.user_subheader,
-          changes.user_image,
-          changes.user_theme,
-          user_id,
+          params.user_header,
+          params.user_subheader,
+          params.user_image,
+          params.user_theme,
+          params.user_id,
         ]);
+
         return rows[0];
       } catch (error) {
         throw error;
       }
     },
+
     removeUser: async (_, { user_id }) => {
       try {
         const { rows } = await pool.query(queries.removeUser, [user_id]);
@@ -85,43 +97,73 @@ const resolvers = {
         throw error;
       }
     },
-    addItem: async (_, { item }) => {
+
+    addItem: async (_, { params }) => {
       try {
-        const { rows } = await pool.query(queries.addItem, [
-          item.item_url,
-          item.item_thumbnail,
-          item.item_text,
-          item.item_style,
-          item.user_id,
+        const startingOrder = 0;
+        const targetOrder = 1;
+
+        await pool.query(queries.updateItemsOrder, [
+          startingOrder,
+          targetOrder,
+          params.user_id,
         ]);
-        return rows[0];
+        await pool.query(queries.addItem, [
+          params.item_url,
+          "classic",
+          targetOrder,
+          params.user_id,
+        ]);
+        const { rows } = await pool.query(queries.getItemsByUser, [params.user_id]);
+        return rows;
+      } catch (error) {
+        return error;
+      }
+    },
+
+    updateItem: async (_, { params }) => {
+      try {
+        const startingOrder = params.item_position;
+        const targetOrder = params.item_order;
+        await pool.query(queries.updateItemsOrder, [
+          startingOrder,
+          targetOrder,
+          params.user_id
+        ]);
+        await pool.query(queries.updateItem, [
+          params.item_url,
+          params.item_thumbnail,
+          params.item_text,
+          params.item_style,
+          params.item_id,
+        ]);
+        const { rows } = await pool.query(queries.getItemsByUser, [params.user_id]);
+        return rows;
       } catch (error) {
         throw error;
       }
     },
-    updateItem: async (_, { item_id, changes }) => {
+    removeItem: async (_, { params }) => {
       try {
-        const { rows } = await pool.query(queries.updateItem, [
-          changes.item_url,
-          changes.item_thumbnail,
-          changes.item_text,
-          changes.item_style,
-          item_id,
+        const startingOrder = params.item_order;
+        const targetOrder = 0;
+
+        await pool.query(queries.removeItem, [params.item_id]);
+
+        await pool.query(queries.updateItemsOrder, [
+          startingOrder,
+          targetOrder,
+          params.user_id,
         ]);
-        return rows[0];
-      } catch (error) {
-        throw error;
-      }
-    },
-    removeItem: async (_, { item_id }) => {
-      try {
-        const { rows } = await pool.query(queries.removeItem, [item_id]);
-        return rows[0];
+
+        const { rows } = await pool.query(queries.getItemsByUser, [params.user_id]);
+        return rows;
       } catch (error) {
         throw error;
       }
     },
   },
+
   User: {
     items: async (user) => {
       try {

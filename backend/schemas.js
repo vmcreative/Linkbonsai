@@ -24,7 +24,6 @@ const typeDefs = gql`
     user_image: String
     user_theme: ThemeType
     items: [Item]
-    # Add more fields as needed
   }
 
   type Item {
@@ -33,8 +32,8 @@ const typeDefs = gql`
     item_thumbnail: String
     item_text: String
     item_style: StyleType
+    item_order: Int
     user_id: Int
-    # Add more fields as needed
   }
 
   # Define Query types for fetching data
@@ -42,6 +41,7 @@ const typeDefs = gql`
     users: [User]
     userById(user_id: Int!): User
     userByHandle(user_handle: String!): User
+    userByEmail(user_email: String!): User
     items: [Item]
     item(item_id: Int!): Item
   }
@@ -49,15 +49,16 @@ const typeDefs = gql`
   # Define Mutation types for CRUD operations
   type Mutation {
     addUser(user: UserInput!): User
-    updateUser(user_id: Int!, changes: UserInput!): User
+    updateUser(params: UserInput!): User
     removeUser(user_id: Int!): User
-    addItem(item: ItemInput!): Item
-    updateItem(item_id: Int!, changes: ItemInput!): Item
-    removeItem(item_id: Int!): Item
+    addItem(params: ItemInput!): [Item]
+    updateItem(params: ItemInput!): [Item]
+    removeItem(params: ItemInput!): [Item]
   }
 
   # Define input types for mutations
   input UserInput {
+    user_id: Int
     user_email: String
     user_handle: String
     user_first_name: String
@@ -66,16 +67,17 @@ const typeDefs = gql`
     user_subheader: String
     user_image: String
     user_theme: ThemeType
-    # Add more fields as needed
   }
 
   input ItemInput {
+    item_id: Int
     item_url: String
     item_thumbnail: String
     item_text: String
     item_style: StyleType
+    item_position: Int
+    item_order: Int
     user_id: Int
-    # Add more fields as needed
   }
 `;
 
