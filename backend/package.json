@@ -1,4 +1,8 @@
 {
+  "name": "linkbonsai-backend",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "apollo-server-express": "^3.13.0",
     "bcrypt": "^5.1.1",
