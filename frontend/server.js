@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+
+console.log('server.js is running...');
+console.log(`Current directory: ${__dirname}`);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
