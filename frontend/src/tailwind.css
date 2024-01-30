@@ -5,18 +5,16 @@
 @tailwind utilities;
 
 .theme__dark {
-  --text: #ffffff;
-  --light: #bababa;
-  --medium: #737373;
-  --dark: #404040;
-  --darker: #171717;
-  --invert: 1;
+  --text: #FFFFFF;
+  --light: #E7E5E4;
+  --medium: #78716C;
+  --dark: #44403C;
+  --darker: #292524;
 }
 .theme__light {
     --text: #000000;
-    --light: #fafafa;
-    --medium: #dfdfdf;
-    --dark: #bfd8d5;
-    --darker: #b1bed5;
-    --invert: 0;
+    --light: #F8FAFC;
+    --medium: #F1F5F9;
+    --dark: #E2E8F0;
+    --darker: #CBD5E1;
 }
