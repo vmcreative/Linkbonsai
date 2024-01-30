@@ -10,6 +10,7 @@ const dummyPass = process.env.DUMMY_PASS;
 
 router.post('/login', async (req, res) => {
   const { email, password } = sanitizeParams(req.body) || {};
+  console.log('req', req.body, dummyEmail, dummyPass);
 
   if (email === dummyEmail && password === dummyPass) {
     try {
@@ -19,7 +20,20 @@ router.post('/login', async (req, res) => {
       }
 
       const token = signToken({ user_id: userData.user_id }, { expiresIn: '1h' });
+
       userData = { ...userData, user_id: token };
+
+      const encodedItems = userData.items.map((item) => {
+        const encodedItemId = signItemId(item.item_id);
+
+        return {
+          ...item,
+          item_id: encodedItemId,
+        };
+      });
+
+      userData.items = encodedItems;
+
       return res.status(200).json({ token, userData });
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -64,7 +78,7 @@ router.get('/id', verifyToken(), async (req, res) => {
     });
 
     userData.items = encodedItems;
-
+    console.log('userData', userData);
     res.status(200).json(userData);
   } catch (error) {
     console.error('Error fetching user data:', error);

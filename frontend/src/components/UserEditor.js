@@ -4,8 +4,6 @@ import React from 'react';
 import EditUserForm from './EditUserForm';
 
 const UserEditor = ({ userData, setUserData, session }) => {
-  const api = process.env.REACT_APP_API;
-
   const onEditUser = async (formData) => {
     const formatted = { ...formData };
     for (const key in formatted) {
@@ -13,7 +11,7 @@ const UserEditor = ({ userData, setUserData, session }) => {
     }
 
     try {
-      const response = await fetch(`${api}/users`, {
+      const response = await fetch(`/api/users`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
