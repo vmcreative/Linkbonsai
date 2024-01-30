@@ -1,1 +1,1 @@
-web: node frontend/start
+web: node start --prefix frontend
