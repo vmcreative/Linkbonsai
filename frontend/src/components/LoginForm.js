@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const LoginForm = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     email: 'demo@email.com',
-    password: 'password',
+    password: '',
   });
 
   const handleFormChange = (e) => {
