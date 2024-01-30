@@ -19,7 +19,6 @@ router.post('/', verifyToken(), async (req, res) => {
 
     const response = items.map((item) => {
       const encodedItemId = signItemId(item.item_id);
-      console.log('id:', item.item_id, 'encoded:', encodedItemId);
       return { ...item, item_id: encodedItemId };
     });
 
@@ -47,7 +46,6 @@ router.put('/', verifyToken(), async (req, res) => {
 
     const response = items.map((item) => {
       const encodedItemId = signItemId(item.item_id);
-      console.log('id:', item.item_id, 'encoded:', encodedItemId);
       return { ...item, item_id: encodedItemId };
     });
 
@@ -75,7 +73,6 @@ router.delete('/', verifyToken(), async (req, res) => {
 
     const response = items.map((item) => {
       const encodedItemId = signItemId(item.item_id);
-      console.log('id:', item.item_id, 'encoded:', encodedItemId);
       return { ...item, item_id: encodedItemId };
     });
 
