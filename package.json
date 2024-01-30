@@ -1,8 +1,10 @@
 {
   "name": "linkbonsai",
   "scripts": {
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start",
     "dev": "npm run start:both",
     "start": "cd backend && node server.js",
-    "build": "cd frontend/ && npm install && cd ../backend/ && npm install && cd ../ && npm run build"
+    "build": "npm run build-frontend && npm run build-backend"
   }
 }

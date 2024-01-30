@@ -1,6 +1,7 @@
 {
   "name": "linkbonsai-backend",
   "scripts": {
+    "build-backend": "npm run build",
     "start": "node server.js"
   },
   "dependencies": {
