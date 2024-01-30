@@ -10,7 +10,7 @@ const VisitorRender = ({ userData, preview }) => {
       ${preview ? 'h-full' : 'h-screen'}
       bg-[--darker] overflow-auto px-4 py-16`}>
       <div className='mx-auto max-w-l md:max-w-xl lg:max-w-2xl'>
-        <div className='w-full text-[--light] text-center flex flex-col items-center'>
+        <div className='w-full text-[--text] text-center flex flex-col items-center'>
           {userData.user_image && <img alt={userData.user_handle} src={userData.user_image} className='rounded-full w-52 h-52 mb-4 bg-[--medium]' />}
           <h1 className='font-sans font-semibold text-xl'>{userData.user_header}</h1>
           <p className='mt-1'>{userData.user_subheader}</p>
