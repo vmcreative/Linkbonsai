@@ -11,7 +11,7 @@ const Menu = ({ userData, showModal, handleLogout }) => {
           aria-label="Menu"
           title="Menu"
           className='rounded-full w-10 h-10 bg-neutral-300 overflow-hidden bg-cover bg-center'
-          style={{ backgroundImage: `url(${userData?.user_image})` }}>
+          style={{ backgroundImage: `url(${userData?.user_image})`}}>
         </button>
         {showModal && <MenuModal userData={userData} handleLogout={handleLogout} />}
       </div>
