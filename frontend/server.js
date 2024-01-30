@@ -1,4 +1,4 @@
-// server.
+// frontend/server.js
 
 const express = require('express');
 const path = require('path');
