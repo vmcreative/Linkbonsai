@@ -10,6 +10,7 @@ const dummyPass = process.env.DUMMY_PASS;
 
 router.post('/login', async (req, res) => {
   const { email, password } = sanitizeParams(req.body) || {};
+  console.log('req', req.body, dummyEmail, dummyPass);
 
   if (email === dummyEmail && password === dummyPass) {
     try {
