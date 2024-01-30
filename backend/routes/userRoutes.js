@@ -10,7 +10,6 @@ const dummyPass = process.env.DUMMY_PASS;
 
 router.post('/login', async (req, res) => {
   const { email, password } = sanitizeParams(req.body) || {};
-  console.log('req', req.body, dummyEmail, dummyPass);
 
   if (email === dummyEmail && password === dummyPass) {
     try {
@@ -78,7 +77,6 @@ router.get('/id', verifyToken(), async (req, res) => {
     });
 
     userData.items = encodedItems;
-    console.log('userData', userData);
     res.status(200).json(userData);
   } catch (error) {
     console.error('Error fetching user data:', error);
