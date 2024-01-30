@@ -1,15 +1,16 @@
 {
-"name": "linkbonsai",
+  "name": "linkbonsai",
   "scripts": {
     "start:frontend": "cd frontend && npm start",
     "start:backend": "cd backend && npm start",
     "start:both": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "dev": "npm run start:both"
+    "dev": "npm run start:both",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "postcss-import": "^16.0.0"
+    "react-scripts": "5.0.1"
   }
 }
