@@ -1,14 +1,8 @@
 {
   "name": "linkbonsai",
   "scripts": {
-    "start:frontend": "cd frontend && npm start",
-    "start:backend": "cd backend && npm start",
-    "start:both": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "dev": "npm run start:both",
-    "start": "node backend/server.js",
-    "build": "cd frontend/ && npm install && npm run build"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "start": "cd backend && node server.js",
+    "build": "cd frontend/ && npm install && cd ../backend/ && npm install && cd ../ && npm run build"
   }
 }
