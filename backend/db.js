@@ -1,13 +1,12 @@
 // backend/db.js
 
-const Pool = require('pg').Pool;
+const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'vincentmartin',
-  host: 'localhost',
-  database: 'linktree',
-  password: 'postgres',
-  port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 module.exports = pool;
