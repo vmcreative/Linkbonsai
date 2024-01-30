@@ -10,10 +10,7 @@ const RoutesComponent = () => {
   return (
     <Router>
       <Routes>
-        {/* Route for the editor view (add authentication logic) */}
-        <Route path="/editor/:userHandle" element={<EditorView />} />
-
-        {/* Route for the visitor view */}
+        <Route path="/admin" element={<EditorView />} />
         <Route path="/:userHandle" element={<VisitorView />} />
       </Routes>
     </Router>
