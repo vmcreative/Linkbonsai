@@ -2,10 +2,6 @@
   "name": "linkbonsai",
   "scripts": {
     "start": "cd backend && node server.js",
-    "build": "cd frontend && npm install && npm run build",
-    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
+    "build": "cd backend && npm install && cd .. && cd frontend && npm install && npm run build"
   }
 }
