@@ -27,7 +27,9 @@ const VisitorRender = ({ userData, preview }) => {
                 {item.item_thumbnail && (
                   <div
                     style={{ backgroundImage: `url(${item.item_thumbnail})` }}
-                    className={item.item_style === 'featured' ? 'shadow-inner h-full w-full bg-[--medium] overflow-hidden bg-cover bg-center' : 'w-11 h-11 rounded-lg absolute left-1.5 top-1/2 -translate-y-1/2'}>
+                    className={`overflow-hidden bg-cover bg-center
+                      ${item.item_style === 'featured' ? 'shadow-inner h-full w-full bg-[--medium]' : 
+                        'w-11 h-11 rounded-lg absolute left-1.5 top-1/2 -translate-y-1/2'}`}>
                   </div>
                 )}
                 <h2 className={`w-full ${item.item_style === 'featured' ? 'absolute bottom-6 left-6 text-[--light]' : 'text-[--text] px-16 py-3.5 text-center '}`}>{item.item_text ? item.item_text : item.item_url}</h2>
